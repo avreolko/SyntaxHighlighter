@@ -42,7 +42,7 @@ open class CodeAttributedString : NSTextStorage
     let stringStorage = NSTextStorage()
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
-    public let highlightr: Highlightr
+    public let highlightr: SyntaxHighlighter
     
     /// This object will be notified before and after the highlighting.
     open var highlightDelegate : HighlightDelegate?
@@ -50,10 +50,10 @@ open class CodeAttributedString : NSTextStorage
     /**
      Initialize the CodeAttributedString
 
-     - parameter highlightr: The highlightr instance to use. Defaults to `Highlightr()`.
+     - parameter highlightr: The highlightr instance to use. Defaults to `SyntaxHighlighter()`.
 
      */
-    public init(highlightr: Highlightr = Highlightr()!)
+    public init(highlightr: SyntaxHighlighter = SyntaxHighlighter()!)
     {
         self.highlightr = highlightr
         super.init()
@@ -62,7 +62,7 @@ open class CodeAttributedString : NSTextStorage
 
     /// Initialize the CodeAttributedString
     public override init() {
-        self.highlightr = Highlightr()!
+        self.highlightr = SyntaxHighlighter()!
         super.init()
         setupListeners()
     }
@@ -70,7 +70,7 @@ open class CodeAttributedString : NSTextStorage
     /// Initialize the CodeAttributedString
     required public init?(coder aDecoder: NSCoder)
     {
-        self.highlightr = Highlightr()!
+        self.highlightr = SyntaxHighlighter()!
         super.init(coder: aDecoder)
         setupListeners()
     }
@@ -79,7 +79,7 @@ open class CodeAttributedString : NSTextStorage
     /// Initialize the CodeAttributedString
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType)
     {
-        self.highlightr = Highlightr()!
+        self.highlightr = SyntaxHighlighter()!
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
     }

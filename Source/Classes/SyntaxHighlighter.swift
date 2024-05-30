@@ -1,5 +1,5 @@
 //
-//  Highlightr.swift
+//  SyntaxHighlighter.swift
 //  Pods
 //
 //  Created by Illanes, J.P. on 4/10/16.
@@ -14,7 +14,7 @@ import AppKit
 #endif
 
 /// Utility class for generating a highlighted NSAttributedString from a String.
-open class Highlightr {
+open class SyntaxHighlighter {
 
     /// Returns the current Theme.
     open var theme : Theme! {
@@ -41,9 +41,9 @@ open class Highlightr {
     /**
      Default init method.
 
-     - parameter highlightPath: The path to `highlight.min.js`. Defaults to `Highlightr.framework/highlight.min.js`
+     - parameter highlightPath: The path to `highlight.min.js`. Defaults to `SyntaxHighlighter.framework/highlight.min.js`
 
-     - returns: Highlightr instance.
+     - returns: SyntaxHighlighter instance.
      */
     public init?(highlightPath: String? = nil) {
 
@@ -54,7 +54,7 @@ open class Highlightr {
         #if SWIFT_PACKAGE
         let bundle = Bundle.module
         #else
-        let bundle = Bundle(for: Highlightr.self)
+        let bundle = Bundle(for: SyntaxHighlighter.self)
         #endif
 
         self.bundle = bundle
