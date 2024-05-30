@@ -11,15 +11,15 @@ import Foundation
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
     /// Typealias for UIColor
-    public typealias RPColor = UIColor
+    public typealias ThemeFont = UIColor
     /// Typealias for UIFont
-    public typealias RPFont = UIFont
+    public typealias ThemeFont = UIFont
 #else
     import AppKit
     /// Typealias for NSColor
-    public typealias RPColor = NSColor
+    public typealias ThemeColor = NSColor
     /// Typealias for NSFont
-    public typealias RPFont = NSFont
+    public typealias ThemeFont = NSFont
 
 #endif
 
@@ -32,17 +32,17 @@ open class Theme {
     internal var lightTheme : String!
     
     /// Regular font to be used by this theme
-    open var codeFont : RPFont!
+    open var codeFont : ThemeFont!
     /// Bold font to be used by this theme
-    open var boldCodeFont : RPFont!
+    open var boldCodeFont : ThemeFont!
     /// Italic font to be used by this theme
-    open var italicCodeFont : RPFont!
+    open var italicCodeFont : ThemeFont!
     
     private var themeDict : RPThemeDict!
     private var strippedTheme : RPThemeStringDict!
     
     /// Default background color for the current theme.
-    open var themeBackgroundColor : RPColor!
+    open var themeBackgroundColor : ThemeColor!
     
     /**
      Initialize the theme with the given theme name.
@@ -52,7 +52,7 @@ open class Theme {
     init(themeString: String)
     {
         theme = themeString
-        setCodeFont(RPFont(name: "Courier", size: 14)!)
+        setCodeFont(ThemeFont(name: "Courier", size: 14)!)
         strippedTheme = stripTheme(themeString)
         lightTheme = strippedThemeToString(strippedTheme)
         themeDict = strippedThemeToTheme(strippedTheme)
@@ -65,10 +65,10 @@ open class Theme {
         {
             if(bkgColorHex == "white")
             {
-                themeBackgroundColor = RPColor(white: 1, alpha: 1)
+                themeBackgroundColor = ThemeColor(white: 1, alpha: 1)
             }else if(bkgColorHex == "black")
             {
-                themeBackgroundColor = RPColor(white: 0, alpha: 1)
+                themeBackgroundColor = ThemeColor(white: 0, alpha: 1)
             }else
             {
                 let range = bkgColorHex.range(of: "#")
@@ -77,7 +77,7 @@ open class Theme {
             }
         }else
         {
-            themeBackgroundColor = RPColor.white
+            themeBackgroundColor = ThemeColor.white
         }
     }
     
@@ -86,7 +86,7 @@ open class Theme {
      
      - parameter font: UIFont (iOS or tvOS) or NSFont (OSX)
      */
-    open func setCodeFont(_ font: RPFont)
+    open func setCodeFont(_ font: ThemeFont)
     {
         codeFont = font
         
@@ -106,12 +106,12 @@ open class Theme {
                                                                       .face:"Oblique"])
         #endif
         
-        boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
-        italicCodeFont = RPFont(descriptor: italicDescriptor, size: font.pointSize)
+        boldCodeFont = ThemeFont(descriptor: boldDescriptor, size: font.pointSize)
+        italicCodeFont = ThemeFont(descriptor: italicDescriptor, size: font.pointSize)
         
         if(italicCodeFont == nil || italicCodeFont.familyName != font.familyName)
         {
-            italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
+            italicCodeFont = ThemeFont(descriptor: obliqueDescriptor, size: font.pointSize)
         }
         if(italicCodeFont == nil)
         {
@@ -285,7 +285,7 @@ open class Theme {
         return returnTheme
     }
     
-    private func fontForCSSStyle(_ fontStyle:String) -> RPFont
+    private func fontForCSSStyle(_ fontStyle:String) -> ThemeFont
     {
         switch fontStyle
         {
@@ -314,7 +314,7 @@ open class Theme {
         }
     }
     
-    private func colorWithHexString (_ hex:String) -> RPColor
+    private func colorWithHexString (_ hex:String) -> ThemeColor
     {
 
         var cString:String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -327,23 +327,23 @@ open class Theme {
         {
             switch cString {
             case "white":
-                return RPColor(white: 1, alpha: 1)
+                return ThemeColor(white: 1, alpha: 1)
             case "black":
-                return RPColor(white: 0, alpha: 1)
+                return ThemeColor(white: 0, alpha: 1)
             case "red":
-                return RPColor(red: 1, green: 0, blue: 0, alpha: 1)
+                return ThemeColor(red: 1, green: 0, blue: 0, alpha: 1)
             case "green":
-                return RPColor(red: 0, green: 1, blue: 0, alpha: 1)
+                return ThemeColor(red: 0, green: 1, blue: 0, alpha: 1)
             case "blue":
-                return RPColor(red: 0, green: 0, blue: 1, alpha: 1)
+                return ThemeColor(red: 0, green: 0, blue: 1, alpha: 1)
             default:
-                return RPColor.gray
+                return ThemeColor.gray
             }
         }
         
         if (cString.count != 6 && cString.count != 3 )
         {
-            return RPColor.gray
+            return ThemeColor.gray
         }
         
         
@@ -376,7 +376,7 @@ open class Theme {
             divisor = 15.0
         }
         
-        return RPColor(red: CGFloat(r) / divisor, green: CGFloat(g) / divisor, blue: CGFloat(b) / divisor, alpha: CGFloat(1))        
+        return ThemeColor(red: CGFloat(r) / divisor, green: CGFloat(g) / divisor, blue: CGFloat(b) / divisor, alpha: CGFloat(1))        
         
     }
     
