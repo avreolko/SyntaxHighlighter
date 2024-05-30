@@ -3,23 +3,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "Highlightr",
+    name: "SyntaxHighlighter",
     platforms: [
         .macOS(.v10_11),
         .iOS(.v8),
     ],
     products: [
         .library(
-            name: "Highlightr",
-            targets: ["Highlightr"]
+            name: "SyntaxHighlighter",
+            targets: ["SyntaxHighlighter"]
         ),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "Highlightr",
+            name: "SyntaxHighlighter",
             dependencies: [],
-            path: "Pod",
+            path: "Source",
             exclude: [
                 "Assets/Highlighter/LICENSE",
             ],
