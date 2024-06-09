@@ -38,7 +38,7 @@ public protocol HighlightDelegate {
 }
 
 /// NSTextStorage subclass. Can be used to dynamically highlight code.
-open class CodeAttributedString : NSTextStorage {
+open class CodeAttributedString: NSTextStorage {
 
     /// Internal Storage
     let stringStorage = NSTextStorage()
@@ -47,7 +47,7 @@ open class CodeAttributedString : NSTextStorage {
     public let syntaxHighlighter: SyntaxHighlighter
 
     /// This object will be notified before and after the highlighting.
-    open var highlightDelegate : HighlightDelegate?
+    open var highlightDelegate: HighlightDelegate?
 
     /**
      Initialize the CodeAttributedString
@@ -88,7 +88,7 @@ open class CodeAttributedString : NSTextStorage {
 #endif
 
     /// Language syntax to use for highlighting. Providing nil will disable highlighting.
-    open var language : String? {
+    open var language: String? {
         didSet {
             highlight(NSMakeRange(0, stringStorage.length))
         }
@@ -112,7 +112,7 @@ open class CodeAttributedString : NSTextStorage {
     open override func attributes(
         at location: Int,
         effectiveRange range: NSRangePointer?
-    ) -> [AttributedStringKey : Any] {
+    ) -> [AttributedStringKey: Any] {
         stringStorage.attributes(
             at: location,
             effectiveRange: range
@@ -144,7 +144,7 @@ open class CodeAttributedString : NSTextStorage {
      - parameter range: NSRange
      */
     open override func setAttributes(
-        _ attrs: [AttributedStringKey : Any]?,
+        _ attrs: [AttributedStringKey: Any]?,
         range: NSRange
     ) {
         stringStorage.setAttributes(attrs, range: range)
