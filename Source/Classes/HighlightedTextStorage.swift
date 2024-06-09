@@ -1,5 +1,5 @@
 //
-//  CodeAttributedString.swift
+//  HighlightedTextStorage.swift
 //  Pods
 //
 //  Created by Illanes, J.P. on 4/19/16.
@@ -38,7 +38,7 @@ public protocol HighlightDelegate {
 }
 
 /// NSTextStorage subclass. Can be used to dynamically highlight code.
-open class CodeAttributedString: NSTextStorage {
+open class HighlightedTextStorage: NSTextStorage {
 
     /// Internal Storage
     let stringStorage = NSTextStorage()
@@ -50,7 +50,7 @@ open class CodeAttributedString: NSTextStorage {
     open var highlightDelegate: HighlightDelegate?
 
     /**
-     Initialize the CodeAttributedString
+     Initialize the HighlightedTextStorage
 
      - parameter highlightr: The highlightr instance to use. Defaults to `SyntaxHighlighter()`.
 
@@ -61,14 +61,14 @@ open class CodeAttributedString: NSTextStorage {
         setupListeners()
     }
 
-    /// Initialize the CodeAttributedString
+    /// Initialize the HighlightedTextStorage
     public override init() {
         self.syntaxHighlighter = SyntaxHighlighter()!
         super.init()
         setupListeners()
     }
 
-    /// Initialize the CodeAttributedString
+    /// Initialize the HighlightedTextStorage
     required public init?(coder aDecoder: NSCoder) {
         self.syntaxHighlighter = SyntaxHighlighter()!
         super.init(coder: aDecoder)
@@ -76,7 +76,7 @@ open class CodeAttributedString: NSTextStorage {
     }
 
 #if os(OSX)
-    /// Initialize the CodeAttributedString
+    /// Initialize the HighlightedTextStorage
     required public init?(
         pasteboardPropertyList propertyList: Any,
         ofType type: NSPasteboard.PasteboardType
